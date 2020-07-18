@@ -1,5 +1,6 @@
 import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
+import Ball from "./ball.js";
 
 let canvas = document.getElementById("gamescreen");
 let context = canvas.getContext("2d");
@@ -7,10 +8,10 @@ let context = canvas.getContext("2d");
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
 
-// let input = new InputHandler();
 let paddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
-
 new InputHandler(paddle);
+
+let ball = new Ball(GAME_WIDTH, GAME_HEIGHT);
 
 // context.fillStyle = "#2c2c2c";
 // context.fillRect(20, 20, 100, 100);
@@ -33,7 +34,10 @@ function gameLoop(timestamp) {
     paddle.update(dt);
     paddle.draw(context);
 
+    ball.draw(context);
+    ball.update(dt);
+
     requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);
