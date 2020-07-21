@@ -12,12 +12,6 @@ const GAME_HEIGHT = 600;
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 game.start();
 
-// let paddle = new Paddle(GAME_WIDTH, GAME_HEIGHT);
-// let ball = new Ball(GAME_WIDTH, GAME_HEIGHT);
-// new InputHandler(paddle);
-
-// paddle.draw(context);
-
 let lastTime = 0;
 
 function gameLoop(timestamp) {
@@ -31,7 +25,8 @@ function gameLoop(timestamp) {
     requestAnimationFrame(gameLoop);
 }
 
-requestAnimationFrame(gameLoop);
+gameLoop();
+// requestAnimationFrame(gameLoop);
 
 // context.fillStyle = "#2c2c2c";
 // context.fillRect(20, 20, 100, 100);
