@@ -13,11 +13,23 @@ export default class Ball {
         };
 
         this.speed = {
-            x: 3,
-            y: 3,
+            x: 8,
+            y: 8,
         };
 
         this.size = 26;
+    }
+
+    resetBall() {
+        this.position = {
+            x: 10,
+            y: 10,
+        };
+
+        this.speed = {
+            x: 8,
+            y: 8,
+        };
     }
 
     draw(context) {
@@ -44,10 +56,16 @@ export default class Ball {
 
         // * CHECK IF BALL IS HITTING TOP OR BOTTOM
         if (
-            this.position.y < 0 ||
-            this.position.y > this.gameHeight - this.size
+            this.position.y < 0
+
+            // this.position.y > this.gameHeight - this.size
         ) {
             this.speed.y = -this.speed.y;
+        }
+
+        if (this.position.y + this.size >= this.gameHeight) {
+            this.game.lives--;
+            this.resetBall();
         }
 
         // // if (this.position.y == 560 - this.size) {
