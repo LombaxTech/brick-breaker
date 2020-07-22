@@ -1,3 +1,5 @@
+import { detectCollision } from "./detectCollision.js";
+
 export default class Ball {
     constructor(game) {
         this.gameWidth = game.gameWidth;
@@ -11,11 +13,11 @@ export default class Ball {
         };
 
         this.speed = {
-            x: 2,
-            y: 2,
+            x: 3,
+            y: 3,
         };
 
-        this.size = 16;
+        this.size = 26;
     }
 
     draw(context) {
@@ -48,27 +50,29 @@ export default class Ball {
             this.speed.y = -this.speed.y;
         }
 
-        // if (this.position.y == 560 - this.size) {
-        //     this.speed.x = 0;
-        //     this.speed.y = 0;
-        // }
+        // // if (this.position.y == 560 - this.size) {
+        // //     this.speed.x = 0;
+        // //     this.speed.y = 0;
+        // // }
 
-        if (
-            this.position.x >= this.game.paddle.position.x &&
-            this.position.x <=
-                this.game.paddle.position.x + this.game.paddle.width &&
-            this.position.y == 560 - this.size
-        ) {
-            // this.speed.x = 0;
+        // let ballLeftEnd = this.position.x;
+        // let ballRightEnd = this.position.x + this.size;
+        // let paddleStart = this.game.paddle.position.x;
+        // let paddleEnd = this.game.paddle.position.x + this.game.paddle.width;
+        // let ballBottom = this.position.y + this.size;
+        // let paddleTop = this.game.paddle.position.y;
+
+        // if (
+        //     ballRightEnd >= paddleStart &&
+        //     ballLeftEnd <= paddleEnd &&
+        //     ballBottom >= paddleTop
+        // ) {
+        //     // this.speed.x = 0;
+        //     // this.speed.y = 0;
+        //     this.speed.y = -this.speed.y;
+        // }
+        if (detectCollision(this, this.game.paddle)) {
             this.speed.y = -this.speed.y;
         }
-        // console.log({
-        //     // paddleHeight: this.game.paddle.height,
-        //     paddleWidth: this.game.paddle.width,
-        //     paddlePos: this.game.paddle.position.x,
-        //     paddleRange: this.game.paddle.position.x + this.game.paddle.width,
-        //     // paddleY: this.game.paddle.position.y,
-        //     ballX: this.position.x,
-        // });
     }
 }
